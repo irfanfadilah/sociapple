@@ -1,0 +1,17 @@
+.panel.panel-default class="animated slideInDown"
+  .panel-body
+    .media
+      .media-left
+        = image_tag @status.user.avatar+"?size=40"
+      .media-body
+        h4.media-heading = @status.user.fullname
+        small.text-muted Just now
+    hr
+    p = simple_format @status.content
+    ul.list-inline class="reaction-status"
+      li: small.text-muted 3 Likes
+      li: small.text-muted 7 Comments
+    hr
+    ul.list-inline class="reaction-actions"
+      li = link_to "Like", "javascript:void(0)"
+      li = link_to "Comment", "javascript:void(0)"

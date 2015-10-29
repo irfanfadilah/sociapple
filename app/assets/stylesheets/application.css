@@ -14,6 +14,7 @@
  *
  * CSS from Rails Assets
  *= require bootstrap
+ *= require animate.css
  *
  * Custom CSS
  *= require custom

@@ -7,5 +7,21 @@ body {
   margin-top: -10px;
   margin-bottom: -10px;
   margin-right: 10px;
-  border: 1px solid #000000;
+}
+
+img {
+  border-radius: 50%;
+}
+
+textarea {
+  resize: none;
+}
+
+.reaction-status {
+  margin-bottom: -10px;
+}
+
+.reaction-actions {
+  margin-top: -10px;
+  margin-bottom: -5px;
 }
