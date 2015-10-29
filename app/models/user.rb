@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
+  # Add ability to like Status
+  acts_as_voter
+
   # Validations
   validates :username, :fullname, presence: true
 

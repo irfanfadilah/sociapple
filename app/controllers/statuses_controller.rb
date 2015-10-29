@@ -1,5 +1,5 @@
 class StatusesController < ApplicationController
-  before_action :set_status, only: [:show, :edit, :update, :destroy]
+  before_action :set_status, only: [:show, :edit, :update, :destroy, :like]
 
   # GET /statuses
   # GET /statuses.json
@@ -60,6 +60,13 @@ class StatusesController < ApplicationController
       format.html { redirect_to statuses_url, notice: 'Status was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # Like / Unlike
+  def like
+    action = current_user.liked?(@status) ? "unliked_by" : "liked_by"
+    @status.send(action, current_user)
+    respond_to { |format| format.js }
   end
 
   private

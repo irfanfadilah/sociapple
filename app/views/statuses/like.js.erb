@@ -1,0 +1,1 @@
+$("#js-likes-count-<%= @status.id %>").text("<%= pluralize(@status.get_likes.size, 'Like') %>");

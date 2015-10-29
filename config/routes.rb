@@ -6,9 +6,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :statuses
-  get 'pages/index'
+  resources :statuses do
+    member do
+      get 'like'
+    end
+  end
 
+  get 'pages/index'
   root 'pages#index'
   devise_for :users
 

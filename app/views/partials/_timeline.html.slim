@@ -24,9 +24,20 @@ br
           hr
           p = status.content
           ul.list-inline class="reaction-status"
-            li: small.text-muted 3 Likes
-            li: small.text-muted 7 Comments
+            li.small.text-muted id=("js-likes-count-#{status.id}")
+              = pluralize(status.get_likes.size, "Like")
+            li.small.text-muted 7 Comments
           hr
           ul.list-inline class="reaction-actions"
-            li = link_to "Like", "javascript:void(0)"
+            li = link_to like_label(status), like_status_path(status), remote: true, class: "js-like-btn"
             li = link_to "Comment", "javascript:void(0)"
+
+javascript:
+  // Change like button label
+  $(".js-like-btn").on("click", function(){
+    if ( $(this).text()=="Like" ){
+      $(this).text("Unlike");
+    } else {
+      $(this).text("Like");
+    }
+  });
