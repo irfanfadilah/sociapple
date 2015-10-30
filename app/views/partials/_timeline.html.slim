@@ -1,19 +1,25 @@
 .row
-  .col-md-6.col-md-offset-3
-    .media class="animated slideInDown"
-      .media-left
-        = image_tag current_user.avatar+"?size=90"
-      .media-body
-        = form_for :status, url: statuses_path, remote: true do |f|
-          .form-group
-            = f.text_area :content, rows: 4, class: "form-control", id: "js-status-textarea"
-          .text-right
-            = f.submit "Post", class: "btn btn-primary"
-br
-.row
-  .col-md-6.col-md-offset-3 id="js-timeline-stream"
-    - @statuses.each do |status|
-      = render "statuses/status", status: status
+  .col-md-7
+    .row
+      .col-md-12
+        .media class="animated slideInDown"
+          .media-left
+            = image_tag current_user.avatar+"?size=90"
+          .media-body
+            = form_for :status, url: statuses_path, remote: true do |f|
+              .form-group
+                = f.text_area :content, rows: 4, class: "form-control", id: "js-status-textarea"
+              .text-right
+                = f.submit "Post", class: "btn btn-primary"
+    br
+    .row
+      .col-md-12 id="js-timeline-stream"
+        - @statuses.each do |status|
+          = render "statuses/status", status: status
+  .col-md-5
+    ul.list-group.affix id="js-recent-activities" data-spy="affix"
+      = render_activities @activities
+      li.list-group-item.text-center = link_to "See All Activities", activities_users_path
 
 javascript:
   // Change like button label

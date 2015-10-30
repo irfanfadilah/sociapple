@@ -1,0 +1,15 @@
+li.list-group-item class="animated slideInRight" id=("js-activity-#{activity.id}")
+  .media
+    .media-left
+      = image_tag activity.owner.avatar+"?size=36"
+    .media-body
+      .no-margin
+        strong = activity.owner.fullname
+        = " commented on "
+        - if activity.owner_id.eql? activity.recipient_id
+          = " his own status."
+        - else
+          strong = activity.recipient.fullname
+          = "'s status."
+      small.text-muted = time_ago_in_words activity.created_at
+

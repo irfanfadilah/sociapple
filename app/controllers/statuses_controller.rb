@@ -66,6 +66,7 @@ class StatusesController < ApplicationController
   def like
     action = current_user.liked?(@status) ? "unliked_by" : "liked_by"
     @status.send(action, current_user)
+    # @status.create_activity(key: "status.liked", owner: current_user, )
     respond_to { |format| format.js }
   end
 

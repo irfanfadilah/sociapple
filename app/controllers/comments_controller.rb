@@ -28,6 +28,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        @activity = @comment.status.create_activity key: "status.commented", owner: @comment.user, recipient: @comment.status.user
         format.js
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }

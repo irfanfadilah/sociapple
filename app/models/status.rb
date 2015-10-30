@@ -1,4 +1,7 @@
 class Status < ActiveRecord::Base
+  # Track activities
+  include PublicActivity::Common
+
   # Add ability to liked by User
   acts_as_votable
 
