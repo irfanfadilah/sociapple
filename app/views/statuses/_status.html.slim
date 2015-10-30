@@ -2,16 +2,29 @@
   .panel-body
     .media
       .media-left
-        = image_tag @status.user.avatar+"?size=40"
+        = image_tag status.user.avatar+"?size=40"
       .media-body
-        h4.media-heading = @status.user.fullname
-        small.text-muted Just now
+        h4.media-heading = status.user.fullname
+        small.text-muted = time_ago_in_words status.created_at
     hr
-    p = simple_format @status.content
+    p = status.content
     ul.list-inline class="reaction-status"
-      li: small.text-muted 3 Likes
-      li: small.text-muted 7 Comments
+      li.small.text-muted id=("js-likes-count-#{status.id}")
+        = pluralize(status.get_likes.size, "Like")
+      li.small.text-muted id=("js-comments-count-#{status.id}")
+        = pluralize(status.comments.size, "Comment")
     hr
     ul.list-inline class="reaction-actions"
-      li = link_to "Like", "javascript:void(0)"
-      li = link_to "Comment", "javascript:void(0)"
+      li = link_to like_label(status), like_status_path(status), remote: true, class: "js-like-btn"
+      li = link_to "Comment", "javascript:void(0)", onclick: "toggleCommentForm(#{status.id})"
+    .media.comment-form id=("js-comment-text-form-#{status.id}") style="display:none;"
+      hr
+      .media-left
+        = image_tag current_user.avatar+"?size=40"
+      .media-body
+        = form_for :comment, url: comments_path, remote: true do |f|
+          .form-group
+            = f.text_area :content, rows: 2, class: "form-control", id: "js-comment-textarea"
+            = f.hidden_field :status_id, value: status.id
+          .text-right
+            = f.submit "Comment", class: "btn btn-primary"

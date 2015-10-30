@@ -20,7 +20,7 @@ img {
 }
 
 textarea {
-  resize: none;
+  resize: vertical;
 }
 
 .reaction-status {
@@ -30,4 +30,8 @@ textarea {
 .reaction-actions {
   margin-top: -10px;
   margin-bottom: -5px;
+}
+
+.comment-form {
+  margin-top: 0;
 }

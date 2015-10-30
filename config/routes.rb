@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :replies
+  resources :comments
+
   resources :users, except: [:index, :show, :edit, :update, :new, :destroy, :create] do
     collection do
       get 'dashboard'

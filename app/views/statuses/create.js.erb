@@ -1,2 +1,2 @@
-$("#js-status-form").val("");
-$("#js-timeline-stream").prepend("<%=j render('status') %>");
+$("#js-status-textarea").val("");
+$("#js-timeline-stream").prepend("<%=j render('status', status: @status) %>");

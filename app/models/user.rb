@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   # Associations
   has_many :statuses
+  has_many :comments
+  has_many :replies
 
   # Callbacks
   before_save :gravatarize
