@@ -1,4 +1,7 @@
 class Status < ActiveRecord::Base
+  # Pagination
+  paginates_per 10
+
   # Track activities
   include PublicActivity::Common
 

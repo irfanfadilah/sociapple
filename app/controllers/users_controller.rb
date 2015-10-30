@@ -3,6 +3,6 @@ class UsersController < ApplicationController
   end
 
   def activities
-    @activities = PublicActivity::Activity.order(created_at: :desc)
+    @activities = Activity.page(params[:page]).order(created_at: :desc)
   end
 end

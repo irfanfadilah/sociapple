@@ -16,6 +16,7 @@
       .col-md-12 id="js-timeline-stream"
         - @statuses.each do |status|
           = render "statuses/status", status: status
+        = paginate @statuses
   .col-md-5
     ul.list-group.affix id="js-recent-activities" data-spy="affix"
       = render_activities @activities

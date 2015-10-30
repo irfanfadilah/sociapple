@@ -3,6 +3,10 @@ body {
   padding-top: 20px;
 }
 
+.pagination {
+  margin-top: 10px;
+}
+
 .no-margin {
   margin: 0;
 }
