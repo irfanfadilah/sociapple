@@ -35,3 +35,7 @@ textarea {
 .comment-form {
   margin-top: 0;
 }
+
+.comment-container {
+  margin-bottom: 15px;
+}

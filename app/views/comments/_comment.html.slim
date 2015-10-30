@@ -1,0 +1,6 @@
+.media class="animated slideInUp"
+  .media-left
+    = image_tag comment.user.avatar+"?size=36"
+  .media-body
+    h5.media-heading: strong = comment.user.fullname
+    = simple_format comment.content

@@ -1,0 +1,2 @@
+$("#js-comment-textarea-<%= @comment.status.id %>").val("");
+$("#js-comment-container-<%= @comment.status_id %>").append("<%=j render('comment', comment: @comment) %>");

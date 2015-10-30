@@ -1,6 +1,6 @@
 .row
   .col-md-6.col-md-offset-3
-    .media
+    .media class="animated slideInDown"
       .media-left
         = image_tag current_user.avatar+"?size=90"
       .media-body
@@ -27,5 +27,5 @@ javascript:
 
   // Toggle comment form
   function toggleCommentForm(id){
-    $("#js-comment-text-form-"+id).toggle();
+    $("#js-comment-form-"+id).toggle();
   }
