@@ -1,0 +1,1 @@
+$("#js-comment-likes-count-<%= @comment.id %>").text("<%= pluralize(@comment.get_likes.size, 'Like') %>");

@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :replies
-  resources :comments
-
   resources :users, except: [:index, :show, :edit, :update, :new, :destroy, :create] do
     collection do
       get 'dashboard'
@@ -11,6 +8,18 @@ Rails.application.routes.draw do
   end
 
   resources :statuses do
+    member do
+      get 'like'
+    end
+  end
+
+  resources :comments do
+    member do
+      get 'like'
+    end
+  end
+
+  resources :replies do
     member do
       get 'like'
     end

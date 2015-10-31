@@ -1,0 +1,11 @@
+.media class="animated slideInLeft"
+  .media-left
+    = image_tag reply.user.avatar+"?size=36"
+  .media-body
+    h5.media-heading: strong = reply.user.fullname
+    = simple_format reply.content
+    / Likes Count and Button
+    ul.list-inline
+      li.small.text-muted id=("js-reply-likes-count-#{reply.id}")
+        = pluralize(reply.get_likes.size, "Like")
+      li = link_to like_label(reply), like_reply_path(reply), remote: true, class: "js-like-btn"

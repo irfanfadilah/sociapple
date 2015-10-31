@@ -8,26 +8,32 @@
         small.text-muted = time_ago_in_words status.created_at
     hr
     = simple_format status.content
+    / Likes and Comments
     ul.list-inline class="reaction-status"
       li.small.text-muted id=("js-likes-count-#{status.id}")
         = pluralize(status.get_likes.size, "Like")
       li.small.text-muted id=("js-comments-count-#{status.id}")
         = pluralize(status.comments.size, "Comment")
     hr
+    / Like and Comment Button
     ul.list-inline class="reaction-actions"
       li = link_to like_label(status), like_status_path(status), remote: true, class: "js-like-btn"
-      li = link_to "Comment", "javascript:void(0)", onclick: "toggleCommentForm(#{status.id})"
-    .media.comment-form id=("js-comment-form-#{status.id}") style="display:none;"
+      li = link_to "Comment", "javascript:void(0)", onclick: "toggleSection('comment', #{status.id})"
+    / Comment Container
+    .comment-form id=("js-comment-section-#{status.id}") style="display:none;"
       hr
+      / Listing Comments
       .comment-container id=("js-comment-container-#{status.id}")
         - status.comments.each do |comment|
           = render "comments/comment", comment: comment
-      .media-left
-        = image_tag current_user.avatar+"?size=36"
-      .media-body
-        = form_for :comment, url: comments_path, remote: true do |f|
-          .form-group
-            = f.text_area :content, rows: 2, class: "form-control", id: "js-comment-textarea-#{status.id}"
-            = f.hidden_field :status_id, value: status.id
-          .text-right
-            = f.submit "Comment", class: "btn btn-primary"
+      / Comment Form
+      .media
+        .media-left
+          = image_tag current_user.avatar+"?size=36"
+        .media-body
+          = form_for :comment, url: comments_path, remote: true do |f|
+            .form-group
+              = f.text_area :content, rows: 2, class: "form-control", id: "js-comment-textarea-#{status.id}"
+              = f.hidden_field :status_id, value: status.id
+            .text-right
+              = f.submit "Comment", class: "btn btn-primary"

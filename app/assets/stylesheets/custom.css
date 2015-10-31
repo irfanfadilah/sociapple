@@ -41,12 +41,18 @@ textarea {
   margin-bottom: -5px;
 }
 
-.comment-form {
-  margin-top: 0;
+.reply-form {
+  margin-top: 20px;
 }
 
 .comment-container {
   margin-bottom: 15px;
+}
+
+.reply-container {
+  min-height: 1px;
+  border-left: 5px solid #eee;
+  padding-left: 10px;
 }
 
 #js-recent-activities {

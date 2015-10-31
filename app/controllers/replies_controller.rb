@@ -1,7 +1,7 @@
 class RepliesController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_reply, only: [:show, :edit, :update, :destroy]
+  before_action :set_reply, only: [:show, :edit, :update, :destroy, :like]
 
   # GET /replies
   # GET /replies.json
@@ -26,10 +26,11 @@ class RepliesController < ApplicationController
   # POST /replies
   # POST /replies.json
   def create
-    @reply = Reply.new(reply_params)
+    @reply = current_user.replies.build(reply_params)
 
     respond_to do |format|
       if @reply.save
+        format.js
         format.html { redirect_to @reply, notice: 'Reply was successfully created.' }
         format.json { render :show, status: :created, location: @reply }
       else
@@ -61,6 +62,13 @@ class RepliesController < ApplicationController
       format.html { redirect_to replies_url, notice: 'Reply was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # Like / Unlike
+  def like
+    action = current_user.liked?(@reply) ? "unliked_by" : "liked_by"
+    @reply.send(action, current_user)
+    respond_to { |format| format.js }
   end
 
   private

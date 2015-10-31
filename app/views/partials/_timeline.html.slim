@@ -21,18 +21,3 @@
     ul.list-group.affix id="js-recent-activities" data-spy="affix"
       = render_activities @activities
       li.list-group-item.text-center = link_to "See All Activities", activities_users_path
-
-javascript:
-  // Change like button label
-  $(".js-like-btn").on("click", function(){
-    if ( $(this).text()=="Like" ){
-      $(this).text("Unlike");
-    } else {
-      $(this).text("Like");
-    }
-  });
-
-  // Toggle comment form
-  function toggleCommentForm(id){
-    $("#js-comment-form-"+id).toggle();
-  }

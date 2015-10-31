@@ -4,3 +4,29 @@
   .media-body
     h5.media-heading: strong = comment.user.fullname
     = simple_format comment.content
+    / Likes and Comments
+    ul.list-inline
+      li.small.text-muted id=("js-comment-likes-count-#{comment.id}")
+        = pluralize(comment.get_likes.size, "Like")
+      li.small.text-muted id=("js-replies-count-#{comment.id}")
+        = pluralize(comment.replies.size, "Reply")
+    / Like and Reply Buttons
+    ul.list-inline
+      li = link_to like_label(comment), like_comment_path(comment), remote: true, class: "js-like-btn"
+      li = link_to "Reply", "javascript:void(0)", onclick: "toggleSection('reply', #{comment.id})"
+    / Reply Container
+    .reply-form id=("js-reply-section-#{comment.id}") style="display:none;"
+      .reply-container id=("js-reply-container-#{comment.id}")
+        - comment.replies.each do |reply|
+          = render "replies/reply", reply: reply
+      / Reply Form
+      .media
+        .media-left
+          = image_tag current_user.avatar+"?size=36"
+        .media-body
+          = form_for :reply, url: replies_path, remote: true do |f|
+            .form-group
+              = f.text_area :content, rows: 2, class: "form-control", id: "js-reply-textarea-#{comment.id}"
+              = f.hidden_field :comment_id, value: comment.id
+            .text-right
+              = f.submit "Reply", class: "btn btn-primary"

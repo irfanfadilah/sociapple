@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy, :like]
 
   # GET /comments
   # GET /comments.json
@@ -63,6 +63,13 @@ class CommentsController < ApplicationController
       format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # Like / Unlike
+  def like
+    action = current_user.liked?(@comment) ? "unliked_by" : "liked_by"
+    @comment.send(action, current_user)
+    respond_to { |format| format.js }
   end
 
   private

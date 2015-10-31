@@ -1,0 +1,3 @@
+$("#js-reply-textarea-<%= @reply.comment_id %>").val("");
+$("#js-reply-container-<%= @reply.comment_id %>").append("<%=j render('reply', reply: @reply) %>");
+$("#js-replies-count-<%= @reply.comment_id %>").text("<%= pluralize(@reply.comment.replies.size, 'Reply') %>");

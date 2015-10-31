@@ -1,5 +1,5 @@
-$("#js-comment-textarea-<%= @comment.status.id %>").val("");
+$("#js-comment-textarea-<%= @comment.status_id %>").val("");
 $("#js-comment-container-<%= @comment.status_id %>").append("<%=j render('comment', comment: @comment) %>");
 $("#js-recent-activities").prepend("<%=j render('public_activity/status/commented', activity: @activity) %>");
 $("#js-activity-<%= @activity.id - 5 %>").slideUp();
-$("#js-comments-count-<%= @comment.status.id %>").text("<%= pluralize(@comment.status.comments.size, 'Comment') %>");
+$("#js-comments-count-<%= @comment.status_id %>").text("<%= pluralize(@comment.status.comments.size, 'Comment') %>");

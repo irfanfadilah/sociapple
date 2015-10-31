@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def like_label(status)
-    current_user.liked?(status) ? "Unlike" : "Like"
+  def like_label(item)
+    current_user.liked?(item) ? "Unlike" : "Like"
   end
 
   def is_active_tab?(path)
