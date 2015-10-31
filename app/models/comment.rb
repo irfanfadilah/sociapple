@@ -5,5 +5,5 @@ class Comment < ActiveRecord::Base
   # Associations
   belongs_to :user
   belongs_to :status
-  has_many :replies
+  has_many :replies, dependent: :destroy
 end

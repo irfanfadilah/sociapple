@@ -9,20 +9,10 @@
       </button>
       <%= link_to root_path, class: "navbar-brand" do %>
         <i class="fa fa-share-alt"></i>
-        <% unless user_signed_in? %><span>SOCIAPPLE</span><% end %>
+        <span>SOCIAPPLE</span>
       <% end %>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
-      <form class="navbar-form navbar-left" role="search" action="javascript:void(0)">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-          </span>
-        </div>
-      </form>
-      <ul class="nav navbar-nav">
-      </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li class="<%= is_active_tab?(root_path) %>"><%= link_to "Timeline", root_path %></li>

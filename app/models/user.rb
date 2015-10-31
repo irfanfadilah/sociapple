@@ -10,9 +10,9 @@ class User < ActiveRecord::Base
   validates :username, :fullname, presence: true
 
   # Associations
-  has_many :statuses
-  has_many :comments
-  has_many :replies
+  has_many :statuses, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :replies, dependent: :destroy
 
   # Callbacks
   before_save :gravatarize
