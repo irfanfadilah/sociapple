@@ -13,7 +13,7 @@ module DeviseHelper
         <span aria-hidden="true">&times;</span>
       </button>
       <div id="error_explanation">
-        <h2>#{sentence}</h2>
+        <strong>#{sentence}</strong>
         <ul>#{messages}</ul>
       </div>
     </div>
