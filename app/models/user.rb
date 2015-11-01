@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   acts_as_voter
 
   # Validations
-  validates :username, :fullname, presence: true
+  validates :fullname, presence: true
 
   # Associations
   has_many :statuses, dependent: :destroy
@@ -16,8 +16,15 @@ class User < ActiveRecord::Base
 
   # Callbacks
   before_save :gravatarize
+  before_create :generate_username
 
   def gravatarize
     self.avatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email)}"
+  end
+
+  def generate_username(num=nil)
+    username = self.fullname.parameterize(".")
+    num.nil? ? (num = 1) : (username += ".#{num}")
+    User.find_by(username: username).nil? ? (self.username = username) : generate_username(num)
   end
 end

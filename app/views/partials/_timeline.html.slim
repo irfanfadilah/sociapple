@@ -20,4 +20,5 @@
   .col-md-5
     ul.list-group.affix id="js-recent-activities" data-spy="affix"
       = render_activities @activities
-      li.list-group-item.text-center = link_to "See All Activities", activities_users_path
+      - if @activities.present?
+        li.list-group-item.text-center = link_to "See All Activities", activities_users_path

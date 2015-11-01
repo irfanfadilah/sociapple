@@ -4,6 +4,10 @@ body {
   background-color: #e7e7e7;
 }
 
+.jumbotron {
+  background-color: #e7e7e7;
+}
+
 .pagination {
   margin-top: 10px;
 }
