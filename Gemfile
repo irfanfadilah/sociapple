@@ -1,4 +1,4 @@
-ruby '2.2.3'
+ruby '2.2.2'
 
 source 'https://rubygems.org' do
   # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -42,6 +42,12 @@ source 'https://rubygems.org' do
     gem 'web-console', '~> 2.0'
     # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
     gem 'spring'
+    # Capistrano and Friends
+    gem 'capistrano'
+    gem 'capistrano-rvm'
+    gem 'capistrano-rails'
+    gem 'capistrano-bundler'
+    gem 'capistrano-passenger'
   end
 
   group :production do
